@@ -115,12 +115,74 @@ Translated model findings into actionable business strategies
 Provided recommendations for customer retention
 
 ## Results
-### Model Performance Comparison
+### Best Parameters Found:
+criterion = log_loss
+max_depth = 85
+min_samples_leaf = 15
+min_samples_split = 3
 
-Model	Training :Recall	,CV Recall	,Test Recall	,Overfitting Gap
+### Model Performance Comparison:
 
-Baseline	1.000	,0.871 ,0.860	,0.129
+Baseline Model - Training Recall: 1.000, CV Recall: 0.871, Test Recall: 0.860, Overfitting Gap: 0.129
 
-Random Search	0.926	,0.907	,0.900	,0.019
+Random Search - Training Recall: 0.926, CV Recall: 0.907, Test Recall: 0.900, Overfitting Gap: 0.019
 
-Grid Search (Final)	0.921	,0.901	,0.901
+Grid Search (Final) - Training Recall: 0.921, CV Recall: 0.901, Test Recall: 0.901, Overfitting Gap: 0.020
+
+### Confusion Matrix (Final Model - Test Set):
+
+True Negatives: 3,133 (loyal customers correctly identified)
+False Positives: 154 (loyal customers incorrectly flagged)
+False Negatives: 170 (churners missed by model - HIGH COST)
+True Positives: 1,314 (churners correctly identified)
+
+### Key Performance Metrics:
+
+Recall (Primary Metric): 88.5%
+Precision: 89.5%
+Accuracy: 93.2%
+F1-Score: 89.0%
+
+## Business Impact:
+
+85% reduction in overfitting from baseline
+
+88.5% of churners correctly identified
+
+30 more customers saved per 1,000 at-risk compared to baseline
+
+## Key Insights
+### Top 5 Churn Predictors:
+
+monthly_charges (23.5%) - Customers with high bills are most likely to churn
+
+subscription_tier (21.2%) - Lower tier customers are less committed
+
+usage_decline (16.8%) - Declining usage indicates disengagement
+
+support_calls (14.5%) - High support calls signal dissatisfaction
+
+competitor_offer (8.8%) - Customers actively shopping for alternatives
+
+## Business Recommendations:
+
+Offer discounts or value-adds to high-charge customers to improve perceived value
+
+Incentivize lower-tier customers to upgrade for better value and commitment
+
+Re-engage customers showing usage decline with targeted campaigns
+
+Proactively resolve issues for customers with high support calls
+
+Match competitor offers with retention deals for at-risk customers
+
+## Future Improvements
+Implement ensemble methods like Random Forest and XGBoost for potential performance gains
+
+Deploy model as real-time API for instant churn predictions
+
+Add model monitoring dashboard to track recall in production
+
+Use Bayesian optimization (Optuna) for more efficient hyperparameter tuning
+
+Create interaction features between top predictors (e.g., monthly_charges × subscription_tier)
